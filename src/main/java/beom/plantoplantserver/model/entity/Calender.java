@@ -16,7 +16,7 @@ public class Calender {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    Integer id;
 
     @Column(name = "user_id")
     String userId;

@@ -15,7 +15,7 @@ public class Flower {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    Integer id;
 
     @Column(name ="name")
     String name;
