@@ -27,4 +27,7 @@ public class Calender {
     @Column(name = "to_do")
     String toDo;
 
+    @Column(name = "to_do_visibility_calender")
+    Boolean toDoVisibilityCalender;
+
 }
