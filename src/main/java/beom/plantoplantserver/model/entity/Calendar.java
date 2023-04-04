@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "calender")
-public class Calender {
+@Entity(name = "calendar")
+public class Calendar {
 
     @Id
     @Column(name = "id")
