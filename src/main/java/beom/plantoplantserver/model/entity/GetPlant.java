@@ -27,9 +27,9 @@ public class GetPlant {
     @JoinColumn(name = "flower_id")
     Flower flower;
 
-    @Column(name = "count", columnDefinition = "0")
+    @Column(name = "count", columnDefinition = "integer default 0")
     Integer count;
 
-    @Column(name = "is_got", columnDefinition = "0")
+    @Column(name = "is_got", columnDefinition = "boolean default false")
     Boolean isGot;
 }
