@@ -20,7 +20,7 @@ public class GetPlant {
     LocalDate date;
 
     @ManyToOne  // 한 명의 User 는 여러 개의 Plant 를 가질 수 있음!
-    @JoinColumn(name = "user_id")   // FK 지정
+    @JoinColumn(name = "user_id")   // FK 지정, 새로운 주석 삽입
     User user;
 
     @ManyToOne
