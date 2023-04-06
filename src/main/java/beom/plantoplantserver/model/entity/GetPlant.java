@@ -3,10 +3,8 @@ package beom.plantoplantserver.model.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
-
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -19,19 +17,19 @@ public class GetPlant {
     Integer id;
 
     @Column(nullable = false, name = "get_plant_date")
-    LocalDateTime date;
+    LocalDate date;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+    @ManyToOne  // 한 명의 User 는 여러 개의 Plant 를 가질 수 있음!
+    @JoinColumn(name = "user_id")   // FK 지정
     User user;
 
     @ManyToOne
     @JoinColumn(name = "flower_id")
     Flower flower;
 
-    @ColumnDefault("0")
+    @Column(name = "count", columnDefinition = "integer default 0")
     Integer count;
 
-    @ColumnDefault("0")
+    @Column(name = "is_got", columnDefinition = "boolean default false")
     Boolean isGot;
 }
