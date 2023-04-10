@@ -26,7 +26,8 @@ public class CalendarController {
     }
 
     @PostMapping("get-to-do-for-month")
-    List<Calendar> getToDoForMonth(int year, int month){
+    public List<Calendar> getToDoForMonth(@RequestParam("year") int year,
+                                          @RequestParam("month") int month){
         return calenderService.getToDoForMonth(year, month);
     }
 }
