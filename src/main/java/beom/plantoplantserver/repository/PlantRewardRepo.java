@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface PlantRewardRepo extends JpaRepository<PlantReward, Integer> {
-    List<PlantReward> findByUserId(String userId);
+    List<PlantReward> findByUserIdAndIsGotTrue(String userId);
 }

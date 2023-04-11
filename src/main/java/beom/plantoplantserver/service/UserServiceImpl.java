@@ -108,14 +108,9 @@ public class UserServiceImpl implements UserService {
 
     private boolean haveToGetReward(String id) {
         boolean result = true;
-        List<PlantReward> plantReward = getPlantRepo.findByUserId(id);
+        List<PlantReward> plantReward = getPlantRepo.findByUserIdAndIsGotTrue(id);
 
-        for (PlantReward p : plantReward) {
-            if (!p.getIsGot()) {
-                result = false;
-                break;
-            }
-        }
+        if (plantReward.size() == 0) result = false;
 
         return result;
     }
