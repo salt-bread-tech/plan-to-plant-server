@@ -83,14 +83,9 @@ public class UserServiceImpl implements UserService {
 
     private boolean isExistingId(String id) {   // 존재하는 id 인지 검사 (중복 여부)  true: 존재함  false: 존재하지 않음
         boolean result = false;
-        List<User> userList = userRepo.findAll();
+        Optional<User> user = userRepo.findById(id);
 
-        for (User u : userList) {
-            if (u.getId().equals(id)) {
-                result = true;
-                break;
-            }
-        }
+        if (user.isPresent()) result = true;
 
         return result;
     }
@@ -106,7 +101,7 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
-    private boolean haveToGetReward(String id) {
+    private boolean haveToGetReward(String id) {    // 보상 받지 않은 목록이 있는지 확인
         boolean result = true;
         List<PlantReward> plantReward = getPlantRepo.findByUserIdAndIsGotTrue(id);
 
