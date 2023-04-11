@@ -1,8 +1,11 @@
 package beom.plantoplantserver.service;
 
+import beom.plantoplantserver.model.dto.request.FirstLoginTodayRequest;
 import beom.plantoplantserver.model.dto.request.LoginRequest;
 import beom.plantoplantserver.model.dto.request.RegisterRequest;
+import beom.plantoplantserver.model.entity.PlantReward;
 import beom.plantoplantserver.model.entity.User;
+import beom.plantoplantserver.repository.PlantRewardRepo;
 import beom.plantoplantserver.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,6 +18,7 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private final UserRepo userRepo;
+    private final PlantRewardRepo getPlantRepo;
 
     @Override
     public String register(RegisterRequest request) {   // 회원 가입
@@ -60,6 +64,23 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
+    @Override
+    public String isFirstLoginToday(FirstLoginTodayRequest request) {   // 오늘 첫 로그인인지
+        String userId = request.getId();
+        String result;
+
+        if (!haveToGetReward(userId)) {
+            result = "0";
+            System.out.println("어제의 보상을 받지 않았습니다.");
+        }
+        else {
+            result = "1";
+            System.out.println("어제의 보상을 받았습니다.");
+        }
+
+        return result;
+    }
+
     private boolean isExistingId(String id) {   // 존재하는 id 인지 검사 (중복 여부)  true: 존재함  false: 존재하지 않음
         boolean result = false;
         List<User> userList = userRepo.findAll();
@@ -80,6 +101,20 @@ public class UserServiceImpl implements UserService {
 
         if (user.isPresent() && user.get().getPassword().equals(password)) {
             result = true;
+        }
+
+        return result;
+    }
+
+    private boolean haveToGetReward(String id) {
+        boolean result = true;
+        List<PlantReward> plantReward = getPlantRepo.findByUserId(id);
+
+        for (PlantReward p : plantReward) {
+            if (!p.getIsGot()) {
+                result = false;
+                break;
+            }
         }
 
         return result;

@@ -1,5 +1,6 @@
 package beom.plantoplantserver.controller;
 
+import beom.plantoplantserver.model.dto.request.FirstLoginTodayRequest;
 import beom.plantoplantserver.model.dto.request.LoginRequest;
 import beom.plantoplantserver.model.dto.request.RegisterRequest;
 import beom.plantoplantserver.service.UserService;
@@ -26,6 +27,11 @@ public class UserController {
     @PostMapping("/login")
     public String login(@RequestBody LoginRequest request) {
         return userService.login(request);
+    }
+
+    @PostMapping("/daily-login-checking")
+    public String isFirstLoginToday(@RequestBody FirstLoginTodayRequest request) {
+        return userService.isFirstLoginToday(request);
     }
 
 }

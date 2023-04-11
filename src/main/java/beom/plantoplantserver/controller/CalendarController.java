@@ -21,7 +21,7 @@ public class CalendarController {
     }
 
     @PostMapping("get-to-do-for-now-month")
-    public List<Calendar> getToDoForNowMonth(){
+    public List<Calendar> getToDoForNowMonth() {
         return calenderService.getToDoForNowMonth();
     }
 

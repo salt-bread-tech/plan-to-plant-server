@@ -9,8 +9,8 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "get_plant")
-public class GetPlant {
+@Entity(name = "plant_reward")
+public class PlantReward {
     @Id
     @Column(nullable = false, name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
