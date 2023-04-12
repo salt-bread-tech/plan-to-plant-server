@@ -1,5 +1,7 @@
 package beom.plantoplantserver.service;
 
+import beom.plantoplantserver.model.dto.request.CalendarRequest;
+import beom.plantoplantserver.model.dto.request.RegisterRequest;
 import beom.plantoplantserver.model.entity.Calendar;
 import beom.plantoplantserver.repository.CalendarRepo;
 import lombok.RequiredArgsConstructor;
@@ -17,9 +19,9 @@ public class CalendarServiceImpl implements CalendarService{
     private final CalendarRepo calendarRepo;
 
     @Override
-    public List<Calendar> getToDoForMonth(int year, int month){
-        LocalDate startDate = LocalDate.of(year, month, 1);
-        LocalDate endDate = LocalDate.of(year, month, startDate.lengthOfMonth());
+    public List<Calendar> getToDoForMonth(CalendarRequest request){
+        LocalDate startDate = LocalDate.of(request.getYear(), request.getMonth(), 1);
+        LocalDate endDate = LocalDate.of(request.getYear(), request.getMonth(), startDate.lengthOfMonth());
         return calendarRepo.findByDateBetweenAndToDoVisibilityCalenderIsTrue(startDate, endDate);
     }
 
