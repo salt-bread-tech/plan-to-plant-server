@@ -17,12 +17,12 @@ public class CalendarController {
     }
 
 
-    @GetMapping("to-do-for-now")
+    @GetMapping("dates")
     public List<Calendar> getToDoForNowMonth(){
         return calenderService.getToDoForNowMonth();
     }
 
-    @PostMapping("to-do-for-month")
+    @PostMapping("months")
     public List<Calendar> getToDoForMonth(@RequestBody CalendarRequest request){
         return calenderService.getToDoForMonth(request);
     }

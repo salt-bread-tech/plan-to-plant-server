@@ -16,12 +16,12 @@ public class DailyToDoController {
         this.dailyToDoService = dailyToDoService;
     }
 
-    @GetMapping("/today's")
+    @GetMapping("/today")
     public List<Calendar> getToDoForToday(){
         return dailyToDoService.getToDoForToday();
     }
 
-    @PostMapping("/dates")
+    @PostMapping("/optional-dates")
     public List<Calendar> getToDoForDate(@RequestBody CalendarRequest request){
         return dailyToDoService.getToDoForDate(request);
     }
