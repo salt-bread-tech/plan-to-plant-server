@@ -1,16 +1,17 @@
 package beom.plantoplantserver.model.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 
 @Entity(name = "garden")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Garden {
 
     @Id
@@ -18,11 +19,13 @@ public class Garden {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @Column(name = "user_id")
-    String userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    User user;
 
-    @Column(name = "flower_id")
-    int flowerId;
+    @ManyToOne
+    @JoinColumn(name = "flower_id")
+    Flower flower;
 
     @Column(name = "count")
     int count;
