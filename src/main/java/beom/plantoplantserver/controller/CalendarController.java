@@ -2,12 +2,9 @@ package beom.plantoplantserver.controller;
 
 
 import beom.plantoplantserver.model.dto.request.CalendarRequest;
-import beom.plantoplantserver.model.dto.request.RegisterRequest;
 import beom.plantoplantserver.model.entity.Calendar;
 import beom.plantoplantserver.service.CalendarService;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -20,12 +17,12 @@ public class CalendarController {
     }
 
 
-    @GetMapping("to-do-for-now")
+    @GetMapping("dates")
     public List<Calendar> getToDoForNowMonth(){
         return calenderService.getToDoForNowMonth();
     }
 
-    @PostMapping("to-do-for-month")
+    @PostMapping("months")
     public List<Calendar> getToDoForMonth(@RequestBody CalendarRequest request){
         return calenderService.getToDoForMonth(request);
     }
