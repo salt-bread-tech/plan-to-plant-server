@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/days")
+@RequestMapping("/todos")
 public class DailyToDoController {
     final DailyToDoService dailyToDoService;
 
@@ -16,12 +16,12 @@ public class DailyToDoController {
         this.dailyToDoService = dailyToDoService;
     }
 
-    @GetMapping("/today-to-dos")
+    @GetMapping("/today's")
     public List<Calendar> getToDoForToday(){
         return dailyToDoService.getToDoForToday();
     }
 
-    @PostMapping("/dates-to-dos")
+    @PostMapping("/dates")
     public List<Calendar> getToDoForDate(@RequestBody CalendarRequest request){
         return dailyToDoService.getToDoForDate(request);
     }
