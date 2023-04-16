@@ -1,0 +1,70 @@
+package beom.plantoplantserver.service;
+
+import beom.plantoplantserver.model.dto.request.PlantRequest;
+import beom.plantoplantserver.model.dto.response.TodayRewardResponse;
+import beom.plantoplantserver.model.entity.Garden;
+import beom.plantoplantserver.model.entity.PlantReward;
+import beom.plantoplantserver.repository.GardenRepo;
+import beom.plantoplantserver.repository.PlantRewardRepo;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@Service
+@RequiredArgsConstructor
+public class PlantServiceImpl implements PlantService {
+
+    private final PlantRewardRepo plantRewardRepo;
+    private final GardenRepo gardenRepo;
+
+    @Override
+    public TodayRewardResponse getTodayReward(PlantRequest request) {
+        TodayRewardResponse result = new TodayRewardResponse();
+        Map<Integer, Integer> countObtained = new HashMap<>();
+        boolean isSuccess = false;
+
+        // 받지 않은 보상 목록 가져오기
+        List<PlantReward> plantRewards = plantRewardRepo.findByUserIdAndIsGotFalse(request.getId());
+
+        // 도감에 보상 추가
+        isSuccess = addToGarden(plantRewards);
+
+        // 결과 전달
+        if (!isSuccess) {
+            result.setTotalCount(0);
+            result.setPlantObtained(null);
+            System.out.println("식물 지급 실패");
+        }
+        else {
+            result.setTotalCount(plantRewards.size());
+            for (PlantReward p : plantRewards) countObtained.put(p.getId(), p.getCount());
+            result.setPlantObtained(countObtained);
+            System.out.println("식물 지급 성공");
+        }
+
+        return result;
+    }
+
+    private boolean addToGarden(List<PlantReward> plantRewards) {
+        boolean b = false;
+
+        if (plantRewards.size() == 0) b = false;
+        else {
+            for (PlantReward p : plantRewards) {
+                Garden g = gardenRepo.findByUserAndFlower(p.getUser(), p.getFlower());
+
+                if (!g.isFound()) g.setFound(true); // 획득했으므로 변경
+
+                g.setCount(g.getCount() + p.getCount()); // 수량 변경
+                gardenRepo.save(g);
+            }
+
+            b = true;
+        }
+
+        return b;
+    }
+}
