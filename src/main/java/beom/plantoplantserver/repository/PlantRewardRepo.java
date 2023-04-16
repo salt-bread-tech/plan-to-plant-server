@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface PlantRewardRepo extends JpaRepository<PlantReward, Integer> {
     List<PlantReward> findByUserIdAndIsGotTrue(String userId);
+    List<PlantReward> findByUserIdAndIsGotFalse(String userId);
 }
