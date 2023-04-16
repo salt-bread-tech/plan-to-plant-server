@@ -22,7 +22,7 @@ public class CalendarServiceImpl implements CalendarService{
     public List<Calendar> getToDoForMonth(CalendarRequest request){
         LocalDate startDate = LocalDate.of(request.getYear(), request.getMonth(), 1);
         LocalDate endDate = LocalDate.of(request.getYear(), request.getMonth(), startDate.lengthOfMonth());
-        return calendarRepo.findByDateBetweenAndToDoVisibilityCalenderIsTrue(startDate, endDate);
+        return calendarRepo.findByDateBetweenAndToDoVisibilityCalendarIsTrue(startDate, endDate);
     }
 
     @Override
@@ -30,6 +30,6 @@ public class CalendarServiceImpl implements CalendarService{
         LocalDate nowDate = LocalDate.now();
         LocalDate startDate = nowDate.withDayOfMonth(1);
         LocalDate endDate = nowDate.withDayOfMonth(nowDate.lengthOfMonth());
-        return calendarRepo.findByDateBetweenAndToDoVisibilityCalenderIsTrue(startDate, endDate);
+        return calendarRepo.findByDateBetweenAndToDoVisibilityCalendarIsTrue(startDate, endDate);
     }
 }

@@ -23,12 +23,12 @@ public class Calendar {
     String userId;
 
     @Column(name = "date")
-    LocalDateTime date;
+    LocalDate date;
 
     @Column(name = "to_do")
     String toDo;
 
-    @Column(name = "to_do_visibility_calender")
-    Boolean toDoVisibilityCalender;
+    @Column(name = "to_do_visibility_calendar")
+    Boolean toDoVisibilityCalendar;
 
 }
