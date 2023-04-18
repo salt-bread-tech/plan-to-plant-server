@@ -13,5 +13,5 @@ public interface PlantRewardRepo extends JpaRepository<PlantReward, Integer> {
     List<PlantReward> findByUserIdAndIsGotFalse(String userId);
 
     @Transactional
-    void deleteByUserIdAndIsGotFalse(String userId);
+    void deleteByUserIdAndIsGotTrue(String userId);
 }

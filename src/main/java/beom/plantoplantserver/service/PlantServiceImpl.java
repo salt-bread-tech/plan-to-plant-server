@@ -47,7 +47,7 @@ public class PlantServiceImpl implements PlantService {
             System.out.println("식물 지급 성공");
 
             // 지급한 데이터 삭제
-            plantRewardRepo.deleteByUserIdAndIsGotFalse(request.getId());
+            plantRewardRepo.deleteByUserIdAndIsGotTrue(request.getId());
             System.out.println("지급한 데이터 삭제 완료");
         }
 
@@ -63,9 +63,11 @@ public class PlantServiceImpl implements PlantService {
                 Garden g = gardenRepo.findByUserAndFlower(p.getUser(), p.getFlower());
 
                 if (!g.isFound()) g.setFound(true); // 획득했으므로 변경
-
                 g.setCount(g.getCount() + p.getCount()); // 수량 변경
                 gardenRepo.save(g);
+
+                p.setIsGot(true);   // 획득한 데이터 true 로 변경
+                plantRewardRepo.save(p);
             }
 
             b = true;
