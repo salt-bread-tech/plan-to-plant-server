@@ -6,6 +6,7 @@ import beom.plantoplantserver.model.entity.Garden;
 import beom.plantoplantserver.model.entity.PlantReward;
 import beom.plantoplantserver.repository.GardenRepo;
 import beom.plantoplantserver.repository.PlantRewardRepo;
+import beom.plantoplantserver.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -39,10 +40,15 @@ public class PlantServiceImpl implements PlantService {
             System.out.println("식물 지급 실패");
         }
         else {
+            // 지급 수, 지급된 식물 id와 수 전달
             result.setTotalCount(plantRewards.size());
             for (PlantReward p : plantRewards) countObtained.put(p.getId(), p.getCount());
             result.setPlantObtained(countObtained);
             System.out.println("식물 지급 성공");
+
+            // 지급한 데이터 삭제
+            plantRewardRepo.deleteByUserIdAndIsGotFalse(request.getId());
+            System.out.println("지급한 데이터 삭제 완료");
         }
 
         return result;
