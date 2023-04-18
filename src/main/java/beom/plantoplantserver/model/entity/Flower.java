@@ -1,29 +1,30 @@
 package beom.plantoplantserver.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
-@Data
+
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Entity(name = "flower")
-public class Flower {
+@Builder
+public class Flower{
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @Column(name ="name")
+    @Column(name = "name")
     String name;
 
     @Column(name = "percentage")
-    String percentage;
+    Double percentage;
 
     @Column(name = "description")
-    String description;
-
+    @Enumerated(EnumType.STRING)
+    FlowerDescription description;
 }
