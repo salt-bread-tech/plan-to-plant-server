@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -14,7 +15,7 @@ public class FlowerServiceImpl implements FlowerService{
     private final FlowerRepo flowerRepo;
 
     @Override
-    public List<Flower> getFlowerInfo() {
-        return flowerRepo.findById();
+    public Optional<Flower> getFlowerInfo(Integer id) {
+        return flowerRepo.findById(id);
     }
 }

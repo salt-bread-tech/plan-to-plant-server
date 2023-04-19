@@ -6,11 +6,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Entity(name = "flower")
-@Builder
 public class Flower{
 
     @Id
@@ -25,6 +24,6 @@ public class Flower{
     Double percentage;
 
     @Column(name = "description")
-    @Enumerated(EnumType.STRING)
-    FlowerDescription description;
+    //@Enumerated(EnumType.STRING)
+    String description;
 }

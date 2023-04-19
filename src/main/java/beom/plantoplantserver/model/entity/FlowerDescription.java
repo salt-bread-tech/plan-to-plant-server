@@ -11,8 +11,7 @@ public enum FlowerDescription {
     TEST3("test용 꽃3"),
     TEST4("test용 꽃4"),
     TEST5("test용 꽃5"),
-    TEST6("희귀 꽃")
-    ;
+    TEST6("희귀 꽃");
 
     private final String description;
 }
