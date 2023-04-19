@@ -2,10 +2,8 @@ package beom.plantoplantserver.service;
 
 import beom.plantoplantserver.model.dto.request.PlantRequest;
 import beom.plantoplantserver.model.dto.response.TodayRewardResponse;
-import beom.plantoplantserver.model.entity.Flower;
 import beom.plantoplantserver.model.entity.Garden;
 import beom.plantoplantserver.model.entity.PlantReward;
-import beom.plantoplantserver.repository.FlowerRepo;
 import beom.plantoplantserver.repository.GardenRepo;
 import beom.plantoplantserver.repository.PlantRewardRepo;
 import beom.plantoplantserver.repository.UserRepo;
@@ -18,11 +16,10 @@ import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
-public class PlantServiceImpl implements PlantService{
+public class PlantServiceImpl implements PlantService {
 
     private final PlantRewardRepo plantRewardRepo;
     private final GardenRepo gardenRepo;
-    private final FlowerRepo flowerRepo;
 
     @Override
     public TodayRewardResponse getTodayReward(PlantRequest request) {
@@ -55,11 +52,6 @@ public class PlantServiceImpl implements PlantService{
         }
 
         return result;
-    }
-
-    @Override
-    public List<Flower> getFlowerInfo() {
-        return flowerRepo.findById();
     }
 
     private boolean addToGarden(List<PlantReward> plantRewards) {
