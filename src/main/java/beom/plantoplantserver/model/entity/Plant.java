@@ -3,14 +3,13 @@ package beom.plantoplantserver.model.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "flower")
-public class Flower{
+@Entity(name = "plant")
+public class Plant {
 
     @Id
     @Column(name = "id")

@@ -24,8 +24,8 @@ public class Garden {
     User user;
 
     @ManyToOne
-    @JoinColumn(name = "flower_id")
-    Flower flower;
+    @JoinColumn(name = "plant_id")
+    Plant plant;
 
     @Column(name = "count")
     int count;
