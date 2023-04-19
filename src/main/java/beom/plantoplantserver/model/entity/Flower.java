@@ -24,6 +24,6 @@ public class Flower{
     Double percentage;
 
     @Column(name = "description")
-    //@Enumerated(EnumType.STRING)
+    //@Convert(converter = descriptionToStringConverter.class)
     String description;
 }

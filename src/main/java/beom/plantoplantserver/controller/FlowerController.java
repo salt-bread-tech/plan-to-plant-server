@@ -3,10 +3,7 @@ package beom.plantoplantserver.controller;
 import beom.plantoplantserver.model.entity.Flower;
 import beom.plantoplantserver.service.FlowerService;
 import org.springframework.data.repository.query.Param;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.websocket.server.PathParam;
@@ -23,8 +20,8 @@ public class FlowerController {
         this.flowerService = flowerService;
     }
 
-    @GetMapping("/plants-information/{id}")
-    public Optional<Flower> getFlowerInfo(@PathVariable Integer id){
+    @GetMapping("/plants-information")
+    public Optional<Flower> getFlowerInfo(@RequestParam("id") Integer id){
         return flowerService.getFlowerInfo(id);
     }
 }
