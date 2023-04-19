@@ -4,8 +4,12 @@ import beom.plantoplantserver.model.dto.request.PlantRequest;
 import beom.plantoplantserver.model.dto.response.TodayRewardResponse;
 import beom.plantoplantserver.model.entity.Plant;
 import beom.plantoplantserver.service.PlantService;
+import org.apache.logging.log4j.message.Message;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -24,8 +28,9 @@ public class PlantController {
     }
 
     @GetMapping("/plants-information")
-    public Optional<Plant> getFlowerInfo(@RequestParam("id") Integer id){
-        return plantService.getPlantInfo(id);
+    public ResponseEntity<List<Plant>> getPlantInfo(@RequestParam("name") String name){
+        List<Plant> result = plantService.getPlantInfo(name);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
 }

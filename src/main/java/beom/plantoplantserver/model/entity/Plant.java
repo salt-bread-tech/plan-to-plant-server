@@ -1,6 +1,7 @@
 package beom.plantoplantserver.model.entity;
 
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
 
@@ -23,6 +24,6 @@ public class Plant {
     Double percentage;
 
     @Column(name = "description")
-    //@Convert(converter = descriptionToStringConverter.class)
-    String description;
+    @Convert(converter = DescriptionToStringConverter.class)
+    PlantDescription description;
 }

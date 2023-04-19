@@ -10,11 +10,9 @@ import beom.plantoplantserver.repository.PlantRepo;
 import beom.plantoplantserver.repository.PlantRewardRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -25,8 +23,8 @@ public class PlantServiceImpl implements PlantService {
     private final PlantRepo plantRepo;
 
     @Override
-    public Optional<Plant> getPlantInfo(Integer id) {
-        return plantRepo.findById(id);
+    public List<Plant> getPlantInfo(String name) {
+        return plantRepo.getDescriptionByName(name);
     }
     @Override
     public TodayRewardResponse getTodayReward(PlantRequest request) {
