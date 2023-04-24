@@ -27,7 +27,7 @@ public class PlantController {
         return plantService.getTodayReward(request);
     }
 
-    @GetMapping("/plants-information")
+    @GetMapping("/information")
     public ResponseEntity<List<Plant>> getPlantInfo(@RequestParam("name") String name){
         List<Plant> result = plantService.getPlantInfo(name);
         return new ResponseEntity<>(result, HttpStatus.OK);
