@@ -3,11 +3,11 @@ package beom.plantoplantserver.service;
 import beom.plantoplantserver.model.dto.request.FirstLoginTodayRequest;
 import beom.plantoplantserver.model.dto.request.LoginRequest;
 import beom.plantoplantserver.model.dto.request.RegisterRequest;
-import beom.plantoplantserver.model.entity.Flower;
+import beom.plantoplantserver.model.entity.Plant;
 import beom.plantoplantserver.model.entity.Garden;
 import beom.plantoplantserver.model.entity.PlantReward;
 import beom.plantoplantserver.model.entity.User;
-import beom.plantoplantserver.repository.FlowerRepo;
+import beom.plantoplantserver.repository.PlantRepo;
 import beom.plantoplantserver.repository.GardenRepo;
 import beom.plantoplantserver.repository.PlantRewardRepo;
 import beom.plantoplantserver.repository.UserRepo;
@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepo userRepo;
     private final PlantRewardRepo getPlantRepo;
     private final GardenRepo gardenRepo;
-    private final FlowerRepo flowerRepo;
+    private final PlantRepo plantRepo;
 
     @Override
     public String register(RegisterRequest request) {   // 회원 가입
@@ -120,14 +120,14 @@ public class UserServiceImpl implements UserService {
 
     private void initGarden(String userId) {
         Optional<User> u = userRepo.findById(userId);
-        List<Flower> flowers = flowerRepo.findAll();
+        List<Plant> plants = plantRepo.findAll();
         User user = u.get();
 
-        for (Flower f : flowers) {
+        for (Plant f : plants) {
             gardenRepo.save(Garden.builder()
                             .id(null)
                             .user(user)
-                            .flower(f)
+                            .plant(f)
                             .count(0)
                             .isFound(false)
                             .build());
