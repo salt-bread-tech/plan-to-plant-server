@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface PlantRepo extends JpaRepository<Plant, Integer> {
-    List<Plant> getDescriptionByName(String name);
+    List<Plant> findByName(String name);
 }
