@@ -24,7 +24,7 @@ public class PlantServiceImpl implements PlantService {
 
     @Override
     public List<Plant> getPlantInfo(String name) {
-        return plantRepo.getDescriptionByName(name);
+        return plantRepo.findByName(name);
     }
     @Override
     public TodayRewardResponse getTodayReward(PlantRequest request) {
