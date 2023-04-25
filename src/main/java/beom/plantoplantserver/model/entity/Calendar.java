@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -32,4 +31,6 @@ public class Calendar {
     @Column(name = "to_do_visibility_calendar")
     Boolean toDoVisibilityCalendar;
 
+    @Column(name = "to_do_completed")
+    Boolean toDoCompleted;
 }
