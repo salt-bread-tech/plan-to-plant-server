@@ -1,7 +1,5 @@
 package beom.plantoplantserver.model.entity;
 
-import beom.plantoplantserver.util.PlantDescription;
-import beom.plantoplantserver.util.DescriptionToStringConverter;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,6 +23,5 @@ public class Plant {
     Double percentage;
 
     @Column(name = "description")
-    @Convert(converter = DescriptionToStringConverter.class)
-    PlantDescription description;
+    String description;
 }
