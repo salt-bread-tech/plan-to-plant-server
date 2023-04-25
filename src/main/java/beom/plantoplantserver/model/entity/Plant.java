@@ -1,7 +1,8 @@
 package beom.plantoplantserver.model.entity;
 
+import beom.plantoplantserver.util.PlantDescription;
+import beom.plantoplantserver.util.DescriptionToStringConverter;
 import lombok.*;
-import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
 
