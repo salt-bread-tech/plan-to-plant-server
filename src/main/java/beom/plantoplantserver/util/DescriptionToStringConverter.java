@@ -1,4 +1,4 @@
-package beom.plantoplantserver.model.entity;
+package beom.plantoplantserver.util;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -16,6 +16,8 @@ public class GardenServiceImpl implements GardenService{
 
     @Override
     public List<Garden> getPlantByUserId(String user_id) {
+        List<Garden> gardens = gardenRepo.findByUserId(user_id);
+
         return gardenRepo.findByUserId(user_id);
     }
 }

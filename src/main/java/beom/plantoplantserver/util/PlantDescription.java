@@ -1,6 +1,5 @@
-package beom.plantoplantserver.model.entity;
+package beom.plantoplantserver.util;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.util.Arrays;

@@ -19,8 +19,9 @@ public class Calendar {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @Column(name = "user_id")
-    String userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    User user;
 
     @Column(name = "date")
     LocalDate date;
