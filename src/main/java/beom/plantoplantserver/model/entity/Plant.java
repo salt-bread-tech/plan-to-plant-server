@@ -1,29 +1,29 @@
 package beom.plantoplantserver.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
+
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "flower")
-public class Flower {
+@Entity(name = "plant")
+public class Plant {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @Column(name ="name")
+    @Column(name = "name")
     String name;
 
     @Column(name = "percentage")
-    String percentage;
+    Double percentage;
 
     @Column(name = "description")
-    String description;
-
+    @Convert(converter = DescriptionToStringConverter.class)
+    PlantDescription description;
 }

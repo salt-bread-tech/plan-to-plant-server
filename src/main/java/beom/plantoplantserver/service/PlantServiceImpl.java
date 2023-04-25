@@ -3,13 +3,13 @@ package beom.plantoplantserver.service;
 import beom.plantoplantserver.model.dto.request.PlantRequest;
 import beom.plantoplantserver.model.dto.response.TodayRewardResponse;
 import beom.plantoplantserver.model.entity.Garden;
+import beom.plantoplantserver.model.entity.Plant;
 import beom.plantoplantserver.model.entity.PlantReward;
 import beom.plantoplantserver.repository.GardenRepo;
+import beom.plantoplantserver.repository.PlantRepo;
 import beom.plantoplantserver.repository.PlantRewardRepo;
-import beom.plantoplantserver.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +20,12 @@ public class PlantServiceImpl implements PlantService {
 
     private final PlantRewardRepo plantRewardRepo;
     private final GardenRepo gardenRepo;
+    private final PlantRepo plantRepo;
 
+    @Override
+    public List<Plant> getPlantInfo(String name) {
+        return plantRepo.getDescriptionByName(name);
+    }
     @Override
     public TodayRewardResponse getTodayReward(PlantRequest request) {
         TodayRewardResponse result = new TodayRewardResponse();
@@ -60,7 +65,7 @@ public class PlantServiceImpl implements PlantService {
         if (plantRewards.size() == 0) b = false;
         else {
             for (PlantReward p : plantRewards) {
-                Garden g = gardenRepo.findByUserAndFlower(p.getUser(), p.getFlower());
+                Garden g = gardenRepo.findByUserAndPlant(p.getUser(), p.getPlant());
 
                 if (!g.isFound()) g.setFound(true); // 획득했으므로 변경
                 g.setCount(g.getCount() + p.getCount()); // 수량 변경
