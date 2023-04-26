@@ -8,8 +8,7 @@ import java.util.List;
 
 public interface CalendarRepo extends JpaRepository<Calendar, Integer> {
 
-    List<Calendar> findByDateBetweenAndToDoVisibilityCalendarIsTrue(LocalDate start, LocalDate end);
-    List<Calendar> findByDate(LocalDate date);
+    List<Calendar> findByUserIdAndDateBetweenAndToDoVisibilityCalendarIsTrue(String user_id, LocalDate start, LocalDate end);
+    List<Calendar> findByUserIdAndDate(String user_id, LocalDate date);
     List<Calendar> findByDateAndToDoCompletedIsTrue(LocalDate date);
-
 }

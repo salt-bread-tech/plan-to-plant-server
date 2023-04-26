@@ -6,6 +6,6 @@ import beom.plantoplantserver.model.entity.Calendar;
 import java.util.List;
 
 public interface DailyToDoService {
-    List<Calendar> getToDoForToday();
+    List<Calendar> getToDoForToday(String user_id);
     List<Calendar> getToDoForDate(CalendarRequest request);
 }

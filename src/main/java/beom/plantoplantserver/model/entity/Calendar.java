@@ -1,6 +1,7 @@
 package beom.plantoplantserver.model.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "calendar")
+@Builder
 public class Calendar {
 
     @Id

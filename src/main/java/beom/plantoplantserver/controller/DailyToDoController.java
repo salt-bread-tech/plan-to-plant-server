@@ -17,8 +17,8 @@ public class DailyToDoController {
     }
 
     @GetMapping("/today")
-    public List<Calendar> getToDoForToday(){
-        return dailyToDoService.getToDoForToday();
+    public List<Calendar> getToDoForToday(@RequestParam("user_id") String user_id){
+        return dailyToDoService.getToDoForToday(user_id);
     }
 
     @PostMapping("/optional-dates")
