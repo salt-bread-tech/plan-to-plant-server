@@ -18,8 +18,8 @@ public class CalendarController {
 
 
     @GetMapping("dates")
-    public List<Calendar> getToDoForNowMonth(){
-        return calenderService.getToDoForNowMonth();
+    public List<Calendar> getToDoForNowMonth(@RequestParam("user_id") String user_id){
+        return calenderService.getToDoForNowMonth(user_id);
     }
 
     @PostMapping("months")
