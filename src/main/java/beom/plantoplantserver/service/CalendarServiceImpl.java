@@ -1,6 +1,7 @@
 package beom.plantoplantserver.service;
 
 import beom.plantoplantserver.model.dto.request.CalendarRequest;
+import beom.plantoplantserver.model.dto.response.UserCalendarResponse;
 import beom.plantoplantserver.model.entity.Calendar;
 import beom.plantoplantserver.repository.CalendarRepo;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,7 @@ public class CalendarServiceImpl implements CalendarService{
     private final CalendarRepo calendarRepo;
 
     @Override
-    public List<Calendar> getToDoForMonth(CalendarRequest request){
+    public List<UserCalendarResponse> getToDoForMonth(CalendarRequest request){
         LocalDate startDate = LocalDate.of(request.getYear(), request.getMonth(), 1);
         LocalDate endDate = LocalDate.of(request.getYear(), request.getMonth(), startDate.lengthOfMonth());
         String user_id = request.getUser_id();
@@ -26,7 +27,7 @@ public class CalendarServiceImpl implements CalendarService{
     }
 
     @Override
-    public List<Calendar> getToDoForNowMonth(String user_id){
+    public List<UserCalendarResponse> getToDoForNowMonth(String user_id){
         LocalDate nowDate = LocalDate.now();
         LocalDate startDate = nowDate.withDayOfMonth(1);
         LocalDate endDate = nowDate.withDayOfMonth(nowDate.lengthOfMonth());
@@ -34,18 +35,18 @@ public class CalendarServiceImpl implements CalendarService{
         return getUserCalendar(user_id, startDate, endDate);
     }
 
-    private List<Calendar> getUserCalendar(String user_id, LocalDate startDate, LocalDate endDate) {
-        List<Calendar> calendars =
+    private List<UserCalendarResponse> getUserCalendar(String user_id, LocalDate startDate, LocalDate endDate) {
+        List<UserCalendarResponse> userCalendarResponses =
                 calendarRepo.findByUserIdAndDateBetweenAndToDoVisibilityCalendarIsTrue(user_id, startDate, endDate);
-        List<Calendar> resCalendars = new ArrayList<>();
-        for(Calendar c: calendars){
-            resCalendars.add(Calendar.builder()
+        List<UserCalendarResponse> resUserCalendarResponses = new ArrayList<>();
+        for(UserCalendarResponse c: userCalendarResponses){
+            resUserCalendarResponses.add(UserCalendarResponse.builder()
                     .id(c.getId())
                     .date(c.getDate())
                     .toDo(c.getToDo())
                     .toDoCompleted(c.getToDoCompleted())
                     .build());
         }
-        return resCalendars;
+        return resUserCalendarResponses;
     }
 }

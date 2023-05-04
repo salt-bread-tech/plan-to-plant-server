@@ -1,5 +1,7 @@
 package beom.plantoplantserver.repository;
 
+import beom.plantoplantserver.model.dto.response.PlantInformationResponse;
+import beom.plantoplantserver.model.dto.response.UserGardenResponse;
 import beom.plantoplantserver.model.entity.Plant;
 import beom.plantoplantserver.model.entity.Garden;
 import beom.plantoplantserver.model.entity.User;
@@ -11,5 +13,5 @@ import java.util.Optional;
 
 public interface GardenRepo extends JpaRepository<Garden, Integer> {
     Garden findByUserAndPlant(User user, Plant plant);
-    List<Garden> findByUserId(String user_id);
+    List<UserGardenResponse> findByUserId(String user_id);
 }

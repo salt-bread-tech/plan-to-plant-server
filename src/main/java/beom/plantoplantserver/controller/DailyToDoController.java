@@ -1,6 +1,7 @@
 package beom.plantoplantserver.controller;
 
 import beom.plantoplantserver.model.dto.request.CalendarRequest;
+import beom.plantoplantserver.model.dto.response.UserCalendarResponse;
 import beom.plantoplantserver.model.entity.Calendar;
 import beom.plantoplantserver.service.DailyToDoService;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +18,12 @@ public class DailyToDoController {
     }
 
     @GetMapping("/today")
-    public List<Calendar> getToDoForToday(@RequestParam("user_id") String user_id){
+    public List<UserCalendarResponse> getToDoForToday(@RequestParam("user_id") String user_id){
         return dailyToDoService.getToDoForToday(user_id);
     }
 
     @PostMapping("/optional-dates")
-    public List<Calendar> getToDoForDate(@RequestBody CalendarRequest request){
+    public List<UserCalendarResponse> getToDoForDate(@RequestBody CalendarRequest request){
         return dailyToDoService.getToDoForDate(request);
     }
 }

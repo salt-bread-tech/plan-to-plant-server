@@ -1,6 +1,7 @@
 package beom.plantoplantserver.service;
 
 import beom.plantoplantserver.model.dto.request.PlantRequest;
+import beom.plantoplantserver.model.dto.response.PlantInformationResponse;
 import beom.plantoplantserver.model.dto.response.TodayRewardResponse;
 import beom.plantoplantserver.model.entity.Garden;
 import beom.plantoplantserver.model.entity.Plant;
@@ -23,7 +24,7 @@ public class PlantServiceImpl implements PlantService {
     private final PlantRepo plantRepo;
 
     @Override
-    public List<Plant> getPlantInfo(String name) {
+    public PlantInformationResponse getPlantInfo(String name) {
         return plantRepo.findByName(name);
     }
     @Override
