@@ -2,6 +2,8 @@ package beom.plantoplantserver.util;
 
 import beom.plantoplantserver.model.entity.Plant;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class RandomPlantManager {
@@ -29,6 +31,19 @@ public class RandomPlantManager {
         }
         
         return result;
+    }
+    public HashMap<Plant, Integer> getRandomPlants(int count) {
+        ArrayList<Integer> arr = new ArrayList<>();
+        HashMap<Plant, Integer> resultPlants = new HashMap<>();
+        setPercentage();
+
+        for (int i = 0; i < count; i++) {
+           arr.add(percentage[getRandomInteger(PERCENTAGE_MAX)]);
+        }
+
+        // arr 에 있는 것들 hashmap에 정리해서 저장
+
+        return resultPlants;
     }
 
     private void setPercentage() {
