@@ -1,6 +1,7 @@
 package beom.plantoplantserver.controller;
 
 import beom.plantoplantserver.model.dto.request.PlantRequest;
+import beom.plantoplantserver.model.dto.response.PlantInformationResponse;
 import beom.plantoplantserver.model.dto.response.TodayRewardResponse;
 import beom.plantoplantserver.model.entity.Plant;
 import beom.plantoplantserver.service.PlantService;
@@ -24,7 +25,7 @@ public class PlantController {
     }
 
     @GetMapping("/information")
-    public List<Plant> getPlantInfo(@RequestParam("name") String name){
+    public PlantInformationResponse getPlantInfo(@RequestParam("name") String name){
         return plantService.getPlantInfo(name);
     }
 }

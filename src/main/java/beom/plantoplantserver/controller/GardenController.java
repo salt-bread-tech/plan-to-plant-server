@@ -1,5 +1,6 @@
 package beom.plantoplantserver.controller;
 
+import beom.plantoplantserver.model.dto.response.UserGardenResponse;
 import beom.plantoplantserver.model.entity.Garden;
 import beom.plantoplantserver.service.GardenService;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class GardenController {
     }
 
     @GetMapping("/user")
-    public List<Garden> getPlantByUserId(@RequestParam("user_id") String user_id){
+    public List<UserGardenResponse> getPlantByUserId(@RequestParam("user_id") String user_id){
         return gardenService.getPlantByUserId(user_id);
     }
 }

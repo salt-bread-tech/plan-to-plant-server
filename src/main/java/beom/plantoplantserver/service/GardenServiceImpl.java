@@ -1,10 +1,12 @@
 package beom.plantoplantserver.service;
 
+import beom.plantoplantserver.model.dto.response.UserGardenResponse;
 import beom.plantoplantserver.model.entity.Garden;
 import beom.plantoplantserver.repository.GardenRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,9 +17,22 @@ public class GardenServiceImpl implements GardenService{
     private final GardenRepo gardenRepo;
 
     @Override
-    public List<Garden> getPlantByUserId(String user_id) {
-        List<Garden> gardens = gardenRepo.findByUserId(user_id);
+    public List<UserGardenResponse> getPlantByUserId(String user_id) {
+        return getPlantList(user_id);
+    }
 
-        return gardenRepo.findByUserId(user_id);
+    private List<UserGardenResponse> getPlantList(String user_id){
+        List<UserGardenResponse> gardens = gardenRepo.findByUserId(user_id);
+        List<UserGardenResponse> resUserGardens = new ArrayList<>();
+
+        for(UserGardenResponse g : gardens){
+            resUserGardens.add(UserGardenResponse.builder()
+                    .id(g.getId())
+                    .plant(g.getPlant())
+                    .count(g.getCount())
+                    .isFound(g.isFound())
+                    .build());
+        }
+        return resUserGardens;
     }
 }
