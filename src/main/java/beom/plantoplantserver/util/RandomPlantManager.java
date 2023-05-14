@@ -15,35 +15,21 @@ public class RandomPlantManager {
     public RandomPlantManager(List<Plant> plants) {
         plantList = plants;
         percentage = new int[PERCENTAGE_MAX];
+        setPercentage();
     }
 
-    public Plant getRandomPlant() {
-        setPercentage();
-
-        int randomResult = percentage[getRandomInteger(PERCENTAGE_MAX)];
-        Plant result = null;
-        
-        for (Plant p : plantList) {
-            if (p.getId() == randomResult) {
-                result = p;
-                break;
-            }
-        }
-        
-        return result;
+    public int getRandomPlant() {
+        return percentage[getRandomInteger(PERCENTAGE_MAX)];
     }
-    public HashMap<Plant, Integer> getRandomPlants(int count) {
-        ArrayList<Integer> arr = new ArrayList<>();
-        HashMap<Plant, Integer> resultPlants = new HashMap<>();
-        setPercentage();
+
+    public int[] getRandomPlants(int count) {   // index: 식물 id, 값: 개수
+        int[] randomResult = new int[plantList.size() + 1];
 
         for (int i = 0; i < count; i++) {
-           arr.add(percentage[getRandomInteger(PERCENTAGE_MAX)]);
+            randomResult[getRandomPlant()] += 1;
         }
 
-        // arr 에 있는 것들 hashmap에 정리해서 저장
-
-        return resultPlants;
+        return randomResult;
     }
 
     private void setPercentage() {
