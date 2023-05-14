@@ -2,6 +2,8 @@ package beom.plantoplantserver.util;
 
 import beom.plantoplantserver.model.entity.Plant;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class RandomPlantManager {
@@ -13,22 +15,21 @@ public class RandomPlantManager {
     public RandomPlantManager(List<Plant> plants) {
         plantList = plants;
         percentage = new int[PERCENTAGE_MAX];
+        setPercentage();
     }
 
-    public Plant getRandomPlant() {
-        setPercentage();
+    public int getRandomPlant() {
+        return percentage[getRandomInteger(PERCENTAGE_MAX)];
+    }
 
-        int randomResult = percentage[getRandomInteger(PERCENTAGE_MAX)];
-        Plant result = null;
-        
-        for (Plant p : plantList) {
-            if (p.getId() == randomResult) {
-                result = p;
-                break;
-            }
+    public int[] getRandomPlants(int count) {   // index: 식물 id, 값: 개수
+        int[] randomResult = new int[plantList.size() + 1];
+
+        for (int i = 0; i < count; i++) {
+            randomResult[getRandomPlant()] += 1;
         }
-        
-        return result;
+
+        return randomResult;
     }
 
     private void setPercentage() {

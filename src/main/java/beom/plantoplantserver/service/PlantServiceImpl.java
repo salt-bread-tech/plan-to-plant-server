@@ -48,12 +48,12 @@ public class PlantServiceImpl implements PlantService {
         else {
             // 지급 수, 지급된 식물 id와 수 전달
             result.setTotalCount(plantRewards.size());
-            for (PlantReward p : plantRewards) countObtained.put(p.getId(), p.getCount());
+            for (PlantReward p : plantRewards) countObtained.put(p.getPlant().getId(), p.getCount());
             result.setPlantObtained(countObtained);
             System.out.println("식물 지급 성공");
 
             // 지급한 데이터 삭제
-            plantRewardRepo.deleteByUserIdAndIsGotTrue(request.getId());
+            plantRewardRepo.deleteAll(plantRewards);
             System.out.println("지급한 데이터 삭제 완료");
         }
 
