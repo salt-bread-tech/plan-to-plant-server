@@ -13,5 +13,5 @@ import java.util.Optional;
 
 public interface GardenRepo extends JpaRepository<Garden, Integer> {
     Garden findByUserAndPlant(User user, Plant plant);
-    List<Garden> findByUserId(String user_id);
+    List<UserGardenResponse> findByUserId(String user_id);
 }
