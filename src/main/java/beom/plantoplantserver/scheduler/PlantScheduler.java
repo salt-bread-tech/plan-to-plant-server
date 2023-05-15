@@ -41,7 +41,7 @@ public class PlantScheduler {
         // 어제 완료된 일 전체 가져오기
         LocalDate now = LocalDate.now();
         LocalDate targetDay = now.minusDays(1);
-        List<Calendar> userCalendarResponseList = calendarRepo.findByDateAndToDoCompletedIsTrue(targetDay);
+        List<Calendar> calendarList = calendarRepo.findByDateAndToDoCompletedIsTrue(targetDay);
 
         printStart();
 
