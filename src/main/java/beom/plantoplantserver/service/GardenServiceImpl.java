@@ -22,13 +22,13 @@ public class GardenServiceImpl implements GardenService{
     }
 
     private List<UserGardenResponse> getPlantList(String user_id){
-        List<Garden> gardens = gardenRepo.findByUserId(user_id);
+        List<UserGardenResponse> gardens = gardenRepo.findByUserId(user_id);
         List<UserGardenResponse> resUserGardens = new ArrayList<>();
 
-        for(Garden g : gardens){
+        for(UserGardenResponse g : gardens){
             resUserGardens.add(UserGardenResponse.builder()
                     .id(g.getId())
-                    .plantName(g.getPlant().getName())
+                    .plant(g.getPlant())
                     .count(g.getCount())
                     .isFound(g.isFound())
                     .build());

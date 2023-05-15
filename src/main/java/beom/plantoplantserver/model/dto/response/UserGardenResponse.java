@@ -11,7 +11,7 @@ import lombok.Data;
 @Builder
 public class UserGardenResponse {
     private int id;
-    private String plantName;
+    private Plant plant;
     private int count;
     private boolean isFound;
 }
