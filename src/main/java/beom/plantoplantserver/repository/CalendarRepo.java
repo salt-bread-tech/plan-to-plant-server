@@ -11,6 +11,6 @@ public interface CalendarRepo extends JpaRepository<Calendar, Integer> {
 
     List<UserCalendarResponse> findByUserIdAndDateBetweenAndToDoVisibilityCalendarIsTrue(String user_id
             , LocalDate start, LocalDate end);
-    List<UserCalendarResponse> findByUserIdAndDate(String user_id, LocalDate date);
     List<Calendar> findByDateAndToDoCompletedIsTrue(LocalDate date);
+    List<UserCalendarResponse> findByUserId(String user_id);
 }

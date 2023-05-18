@@ -18,31 +18,17 @@ public class DailyToDoServiceImpl implements DailyToDoService{
     private final CalendarRepo calendarRepo;
 
     @Override
-    public List<UserCalendarResponse> getToDoForToday(String user_id) {
-        LocalDate now = LocalDate.now();
-
-        return getUserDailyToDo(user_id, now);
-    }
-
-    @Override
-    public List<UserCalendarResponse> getToDoForDate(CalendarRequest request) {
-        LocalDate date = LocalDate.of(request.getYear(), request.getMonth(), request.getDay());
-        String uId = request.getUser_id();
-
-        return getUserDailyToDo(uId, date);
-    }
-
-    private List<UserCalendarResponse> getUserDailyToDo(String user_id, LocalDate now){
-        List<UserCalendarResponse> userCalendarResponses = calendarRepo.findByUserIdAndDate(user_id, now);
-        List<UserCalendarResponse> resUserDailyResponses = new ArrayList<>();
-        for(UserCalendarResponse c : userCalendarResponses){
-            resUserDailyResponses.add(UserCalendarResponse.builder()
-                    .id(c.getId())
-                    .date(c.getDate())
-                    .toDo(c.getToDo())
-                    .toDoCompleted(c.getToDoCompleted())
+    public List<UserCalendarResponse> getAllToDo(String user_id) {
+        List<UserCalendarResponse> userCalendarResponses = calendarRepo.findByUserId(user_id);
+        List<UserCalendarResponse> res = new ArrayList<>();
+        for (UserCalendarResponse u : userCalendarResponses){
+            res.add(UserCalendarResponse.builder()
+                    .id(u.getId())
+                    .date(u.getDate())
+                    .toDo(u.getToDo())
+                    .toDoCompleted(u.getToDoCompleted())
                     .build());
         }
-        return resUserDailyResponses;
+        return res;
     }
 }
