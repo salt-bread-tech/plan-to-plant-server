@@ -2,6 +2,7 @@ package beom.plantoplantserver.service;
 
 import beom.plantoplantserver.model.dto.request.AddToDoRequest;
 import beom.plantoplantserver.model.dto.request.DeleteToDoRequest;
+import beom.plantoplantserver.model.dto.request.UpdateToDoRequest;
 import beom.plantoplantserver.model.dto.response.UserCalendarResponse;
 
 import java.util.List;
@@ -11,4 +12,6 @@ public interface DailyToDoService {
     String addToDo(AddToDoRequest request);
 
     String deleteToDo(DeleteToDoRequest request);
+
+    String updateToDo(UpdateToDoRequest request);
 }

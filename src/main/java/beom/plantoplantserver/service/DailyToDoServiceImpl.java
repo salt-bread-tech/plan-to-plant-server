@@ -2,6 +2,7 @@ package beom.plantoplantserver.service;
 
 import beom.plantoplantserver.model.dto.request.AddToDoRequest;
 import beom.plantoplantserver.model.dto.request.DeleteToDoRequest;
+import beom.plantoplantserver.model.dto.request.UpdateToDoRequest;
 import beom.plantoplantserver.model.dto.response.UserCalendarResponse;
 import beom.plantoplantserver.model.entity.Calendar;
 import beom.plantoplantserver.model.entity.User;
@@ -64,6 +65,29 @@ public class DailyToDoServiceImpl implements DailyToDoService{
 
         calendarRepo.deleteById(request.getToDoId());
         result = "1";
+
+        return result;
+    }
+
+    @Override
+    public String updateToDo(UpdateToDoRequest request) {
+        Optional<User> optionalUser = userRepo.findById(request.getUserId());
+        String result = "";
+
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            calendarRepo.save(Calendar.builder()
+                    .id(request.getToDoId())
+                    .user(user)
+                    .date(request.getDate())
+                    .toDo(request.getToDo())
+                    .toDoVisibilityCalendar(request.getToDoVisibilityCalendar())
+                    .toDoCompleted(request.getToDoVisibilityCalendar()).build());
+            result = "1";
+        }
+        else {
+            result = "2";
+        }
 
         return result;
     }
