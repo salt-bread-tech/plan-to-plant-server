@@ -3,7 +3,6 @@ package beom.plantoplantserver.controller;
 
 import beom.plantoplantserver.model.dto.request.CalendarRequest;
 import beom.plantoplantserver.model.dto.response.UserCalendarResponse;
-import beom.plantoplantserver.model.entity.Calendar;
 import beom.plantoplantserver.service.CalendarService;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
