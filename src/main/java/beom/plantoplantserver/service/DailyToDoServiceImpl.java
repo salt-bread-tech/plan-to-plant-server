@@ -60,17 +60,10 @@ public class DailyToDoServiceImpl implements DailyToDoService{
 
     @Override
     public String deleteToDo(DeleteToDoRequest request) {
-        Optional<User> optionalUser = userRepo.findById(request.getUserId());
         String result = "";
 
-        if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            calendarRepo.deleteById(request.getToDoId());
-            result = "1";
-        }
-        else {
-            result = "2";
-        }
+        calendarRepo.deleteById(request.getToDoId());
+        result = "1";
 
         return result;
     }
