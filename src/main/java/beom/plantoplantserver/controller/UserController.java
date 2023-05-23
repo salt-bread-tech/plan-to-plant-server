@@ -32,7 +32,7 @@ public class UserController {
     }
 
     @GetMapping("/info")
-    public  String getUserName(@RequestParam("user_id") String userId) {
+    public  String getUserName(@RequestParam("uid") String userId) {
         return userService.getNickname(userId);
     }
 
