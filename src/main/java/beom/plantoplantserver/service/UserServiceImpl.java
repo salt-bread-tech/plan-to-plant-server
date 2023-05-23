@@ -89,6 +89,19 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
+    @Override
+    public String getNickname(String userId) {
+        Optional<User> optionalUser = userRepo.findById(userId);
+        String nickname = "";
+
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            nickname = user.getNickname();
+        }
+
+        return nickname;
+    }
+
     private boolean isExistingId(String id) {   // 존재하는 id 인지 검사 (중복 여부)  true: 존재함  false: 존재하지 않음
         boolean result = false;
         Optional<User> user = userRepo.findById(id);
