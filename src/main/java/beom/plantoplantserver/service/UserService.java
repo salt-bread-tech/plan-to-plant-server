@@ -11,4 +11,6 @@ public interface UserService {
     String login(LoginRequest request);
 
     String isFirstLoginToday(FirstLoginTodayRequest request);
+
+    String getNickname(String userId);
 }
