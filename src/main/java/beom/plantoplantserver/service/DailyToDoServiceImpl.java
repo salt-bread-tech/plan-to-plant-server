@@ -51,9 +51,11 @@ public class DailyToDoServiceImpl implements DailyToDoService{
                     .toDoVisibilityCalendar(request.getToDoVisibilityCalendar())
                     .toDoCompleted(false).build());
             result = "1";
+            System.out.println("addPlan 성공");
         }
         else {
             result = "2";
+            System.out.println("addPlan 실패");
         }
 
         return result;
