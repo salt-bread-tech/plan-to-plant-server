@@ -75,15 +75,18 @@ public class DailyToDoServiceImpl implements DailyToDoService{
         String result = "";
 
         if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            calendarRepo.save(Calendar.builder()
-                    .id(request.getToDoId())
-                    .user(user)
-                    .date(request.getDate())
-                    .toDo(request.getToDo())
-                    .toDoVisibilityCalendar(request.getToDoVisibilityCalendar())
-                    .toDoCompleted(request.getToDoCompleted()).build());
-            result = "1";
+            Optional<Calendar> c = calendarRepo.findById(request.getToDoId());
+
+            if (c.isPresent()) {
+                Calendar calendar = c.get();
+                calendar.setDate(request.getDate());
+                calendar.setToDo(request.getToDo());
+                calendar.setToDoVisibilityCalendar(request.getToDoVisibilityCalendar());
+                calendar.setToDoCompleted(request.getToDoVisibilityCalendar());
+                calendarRepo.save(calendar);
+
+                result = "1";
+            }
         }
         else {
             result = "2";
