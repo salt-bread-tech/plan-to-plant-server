@@ -82,7 +82,7 @@ public class DailyToDoServiceImpl implements DailyToDoService{
                 calendar.setDate(request.getDate());
                 calendar.setToDo(request.getToDo());
                 calendar.setToDoVisibilityCalendar(request.getToDoVisibilityCalendar());
-                calendar.setToDoCompleted(request.getToDoVisibilityCalendar());
+                calendar.setToDoCompleted(request.getToDoCompleted());
                 calendarRepo.save(calendar);
 
                 result = "1";
