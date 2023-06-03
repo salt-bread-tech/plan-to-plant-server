@@ -25,4 +25,5 @@ public class UpdateToDoRequest {
 
     Boolean toDoVisibilityCalendar;
 
+    Boolean toDoCompleted;
 }
