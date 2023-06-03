@@ -82,7 +82,7 @@ public class DailyToDoServiceImpl implements DailyToDoService{
                     .date(request.getDate())
                     .toDo(request.getToDo())
                     .toDoVisibilityCalendar(request.getToDoVisibilityCalendar())
-                    .toDoCompleted(request.getToDoVisibilityCalendar()).build());
+                    .toDoCompleted(request.getToDoCompleted()).build());
             result = "1";
         }
         else {
